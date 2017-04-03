@@ -1,13 +1,55 @@
-Gra w życie	Michał Woźniak	Krzysztof Podurgiel
+GRA W ŻYCIE
+Michał Woźniak
+Krzysztof Podurgiel
 
-pliki matrix.c matrix.h
-wczytaj-wczytuje planszę z pliku matryca.txt
-drukuj-wypisuje planszę
+matrix.c
+	matrix_t * wczytaj (char *path)
+		Wczytuje planszę do struktury z pliku przekazanego jako parametr
 
-pliki gen.c gen.h
-middle, up, down, left, right, corners-ożywiają, zabijają, lub pozostawiają w aktualnym stanie konkretne komórki
-gen-łączy działanie powyższych funkcji
+	void drukuj(matrix_t * m)
+		Wypisuje planszę
+
+	int kom(matrix_t * m, int wie, int kol)
+		Zwraca żądaną komórkę
+
+	void move(matrix_t * m, matrix_t * m2)
+		Kopiuje zawartość tablicy tab ze struktury m2 do struktury m
+
+
+gen.c
+	void gen(matrix_t * m, matrix_t * m2)
+		Na bazie m->tab, generuje następny stan komórek i zapisuje go w m2->tab
+		Funkcja decyduje o życiu każdej komórki przy pomocy funkcji zycie()
+
+	int zycie(matrix_t * m, int r, int c)
+		Funkcja zwraca wartość 0, jeżeli komórka ma zostać uśmiercona i 1 jak ma zostać żywa.
+		Robi na bazie liczby sąsiadów do okoła komórki.
+		Przy pomocy funkcji nal() sprawdzane jest, czy konkretny sasiąd komórki znajduje się na planszy. Jeżeli tak, to sprawdza się jego stan.
+
+	int nal(matrix_t * m, int r, int c)
+		Funkcja sprawdza, czy dana komórka należy do planszy. Jeżeli tak - zwracane jest wartość 1, jeżeli nie, to 0.
+
+
+main.c
+	int main(int argc, char **argv)
+		Sprawdza poprawność argumentów i dla nich uruchamia grę. W przeciwnym razie brane są wartości domyślne, o ile nie zostanie wywołana pomoc (funkcja help()).
+		1. argument to liczba kroków gry
+		2. argument to ścieżka do pliku tekstowego z planszą
+		Dla zadanej liczby kroków wykonywane są instrukcje wewnątrz pętli for():
+			- wyczyszczenie ekranu przy pomocy ANSI/VT100 Terminal Control Escape Sequences
+			- wypisanie numeru stanu
+			- wypisanie planszy przy pomocy funkcji drukuj()
+			- wywoływana jest funkcja gen() generująca następny krok
+			- wywoływana jest funkcja move() przenosząca planszę do głównej struktury
+			- następuje wstrzymanie pętli na sekundę
+
+	void help(char * name)
+		Funkcja drukuje uproszczone instrukcje do gry.
+
+
 
 W grze stosujemy sąsiedztwo Moore’a.
+
+Plansza w pliku tekstowym musi się składać z '0' - komórek martwych, i '1' - komórek żywych.
 
 Komórki poza planszą traktujemy jako martwe.
