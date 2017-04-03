@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
 		move(m, m2);
 		printf("\n");
 	}
-        printf("\n\nKolumn: %i\nWierszy:%i\nZnakow: %i", m->cols, m->rows, m->n);
+        //printf("\n\nKolumn: %i\nWierszy:%i\nZnakow: %i", m->cols, m->rows, m->n);
 
         return EXIT_SUCCESS;
 }

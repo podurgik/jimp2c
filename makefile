@@ -9,4 +9,4 @@ gen.o: gen.c gen.h
 main.o: main.c
 
 test: all
-	gra
+	./gra 10
