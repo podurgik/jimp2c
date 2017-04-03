@@ -36,7 +36,7 @@ main.c
 		1. argument to liczba kroków gry
 		2. argument to ścieżka do pliku tekstowego z planszą
 		Dla zadanej liczby kroków wykonywane są instrukcje wewnątrz pętli for():
-			- wyczyszczenie ekranu przy pomocy ANSI/VT100 Terminal Control Escape Sequences
+			- wyczyszczenie ekranu przy pomocy ANSI/VT100 Terminal Control Escape Sequences (http://www.termsys.demon.co.uk/vtansi.htm)
 			- wypisanie numeru stanu
 			- wypisanie planszy przy pomocy funkcji drukuj()
 			- wywoływana jest funkcja gen() generująca następny krok
