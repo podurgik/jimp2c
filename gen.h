@@ -4,10 +4,6 @@
 #include "matrix.h"
 #endif
 
-void middle(matrix_t*, matrix_t*, int, int);
-void up(matrix_t*, matrix_t*);
-void down(matrix_t*, matrix_t*);
-void left(matrix_t*, matrix_t*);
-void right(matrix_t*, matrix_t*);
-void corners(matrix_t*, matrix_t*);
-void gen(matrix_t*, matrix_t*);
+int nal(matrix_t * m, int r, int c);
+int zycie(matrix_t * m, int r, int c);
+void gen(matrix_t * m, matrix_t * m2);
