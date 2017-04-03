@@ -71,11 +71,9 @@ int kom(matrix_t * m, int wie, int kol) {
 	}
 }
 
-void move(matrix_t *m, matrix_t *m2) {
-	int i, j;
-	for(i=0;i<m->cols;i++) {
-		for(j=0;j<m->rows;j++) {
-			m->tab[i*m->rows+j]=m2->tab[i*m->rows+j];
-		}
+void move(matrix_t * m, matrix_t * m2) {
+	int i;
+	for(i=0; i < m->n; i++) {
+			m->tab[i] = m2->tab[i];
 	}
 }
