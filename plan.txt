@@ -1,0 +1,13 @@
+Gra w życie	Michał Woźniak	Krzysztof Podurgiel
+
+pliki matrix.c matrix.h
+wczytaj-wczytuje planszę z pliku matryca.txt
+drukuj-wypisuje planszę
+
+pliki gen.c gen.h
+middle, up, down, left, right, corners-ożywiają, zabijają, lub pozostawiają w aktualnym stanie konkretne komórki
+gen-łączy działanie powyższych funkcji
+
+W grze stosujemy sąsiedztwo Moore’a.
+
+Komórki poza planszą traktujemy jako martwe.
