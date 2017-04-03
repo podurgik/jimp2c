@@ -39,8 +39,8 @@ int main(int argc, char **argv) {
 	for(i = 1; i <= l; i++) {	
 		printf("\033[H\033[J");
 		printf("Stan #%i\n", i);
-		gen(m, m2);
 		drukuj(m);
+		gen(m, m2);
 		move(m, m2);
 		printf("\n");
 		w(1000);
