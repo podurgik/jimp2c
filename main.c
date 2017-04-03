@@ -17,7 +17,7 @@
 #endif
 
 void help(char * name) {
-	printf("%s: uzycie: %s [no] [path] [time]\n\tno   - numer powtorzen, domyslnie: 10\n\tpath - sciezka z matryca wstepnan\n\ttime - czas przerwy w milisekundach\n", name, name);
+	printf("%s: uzycie: %s [no] [path] [time]\n\tno   - liczba krokow, domyslnie: 10\n\tpath - sciezka z matryca wstepnan\n\ttime - czas przerwy w milisekundach\n", name, name);
 }
 
 int main(int argc, char **argv) {
