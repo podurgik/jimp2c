@@ -55,8 +55,13 @@ matrix_t * wczytaj (char *path){
 
 void drukuj(matrix_t * m) {
 	int i = 0;
+	int kom;
 	while (i < m->n) {
-		printf("%i", m->tab[i++]);
+		kom = m->tab[i++];
+		/*if (kom == 0) printf("░"); else printf("█");*/
+		if (kom == 0) printf("□ "); else printf("■ ");
+		/*printf("%i", m->tab[i++]);*/
+
 		if (i % m->cols == 0)
 			printf("\n");
 	}
