@@ -3,6 +3,7 @@
 
 #include "matrix.h"
 #include "gen.h"
+#include "png.h"
 
 #ifdef _WIN32
 	#include <windows.h>
@@ -36,18 +37,19 @@ int main(int argc, char **argv) {
 		}
 	}
 	
-        int i;
+	int i;
 	int l = (argc > 1) ? atoi(argv[1]) : 10;
 	char * path = (argc > 2) ? argv[2] :  "matryca.txt";
 	
 	matrix_t * m = wczytaj("matryca.txt");
-        matrix_t * m2 = alokuj(m);
+	matrix_t * m2 = alokuj(m);
 	
 	for(i = 1; i <= l; i++) {	
 		czyscEkran();
 		printf("Stan #%i\n", i);
 		drukuj(m);
 		if(i == l) zapisz(m, path, i);
+		rysujPNG(m, path, i);
 		gen(m, m2);
 		move(m, m2);
 		printf("\n");
@@ -55,8 +57,8 @@ int main(int argc, char **argv) {
 	}
 	
 	
-        /* printf("\n\nKolumn: %i\nWierszy:%i\nZnakow: %i\n", m->cols, m->rows, m->n); */
+	/* printf("\n\nKolumn: %i\nWierszy:%i\nZnakow: %i\n", m->cols, m->rows, m->n); */
 
-        return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
 

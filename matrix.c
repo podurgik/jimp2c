@@ -77,7 +77,7 @@ int kom(matrix_t * m, int wie, int kol) {
 	if (wie < m->rows && kol < m->cols)
 		return m->tab[wie*m->cols + kol];
 	else {
-		printf("\nNie ma takiej komorki!");
+		printf("\n[%i, %i]: nie ma takiej komorki!", wie, kol);
 		exit(2);
 	}
 }
@@ -100,7 +100,7 @@ matrix_t * alokuj(matrix_t * m) {
 
 void zapisz(matrix_t * m, char * path, int nk) {
 	char str[50];
-	sprintf(str, "%s_stan_%i", path, nk);
+	sprintf(str, "%s_stan_%i.txt", path, nk);
 	FILE * plik = fopen(str, "w");
 	
 	int i = 0;

@@ -1,4 +1,7 @@
 all:
-	cl main.c matrix.c gen.c
+	cl main.c matrix.c gen.c png.c lodepng.c
 test: all
-	main 8
+	main 9
+clean:
+	del *.obj
+	del *.png
