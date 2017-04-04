@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include "matrix.h"
 
+#ifdef _WIN32
+	#define zywa '1'
+	#define martwa '0'
+#else
+	#define zywa '■'
+	#define martwa '□'
+#endif
+
 matrix_t * wczytaj (char *path){
 	FILE * plik = fopen(path, "r");
 
@@ -55,11 +63,9 @@ matrix_t * wczytaj (char *path){
 
 void drukuj(matrix_t * m) {
 	int i = 0;
-	int kom;
 	while (i < m->n) {
-		kom = m->tab[i++];
-		/*if (kom == 0) printf("░"); else printf("█");*/
-		if (kom == 0) printf("□ "); else printf("■ ");
+		if (m->tab[i++] == 0) printf("%c ", martwa); else printf("%c ", zywa);
+		
 		/*printf("%i", m->tab[i++]);*/
 
 		if (i % m->cols == 0)

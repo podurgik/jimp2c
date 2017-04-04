@@ -9,10 +9,18 @@
 	void w(unsigned millis) {
 		Sleep(millis);
 	}
+
+	void czyscEkran(){
+		system("cls");
+	}
 #else
 	#include <unistd.h>
 	void w(unsigned millis) {
 		sleep(millis / 1000);
+	}
+
+	void czyscEkran(){
+		printf("\033[H\033[J");
 	}
 #endif
 
@@ -36,7 +44,7 @@ int main(int argc, char **argv) {
         matrix_t * m2 = alokuj(m);
 	
 	for(i = 1; i <= l; i++) {	
-		printf("\033[H\033[J");
+		czyscEkran();
 		printf("Stan #%i\n", i);
 		drukuj(m);
 		if(i == l) zapisz(m, path, i);
