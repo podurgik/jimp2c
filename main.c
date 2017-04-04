@@ -26,7 +26,10 @@
 #endif
 
 void help(char * name) {
-	printf("%s: uzycie: %s [no] [path] [time]\n\tno   - liczba krokow, domyslnie: 10\n\tpath - sciezka z matryca wstepnan\n\ttime - czas przerwy w milisekundach\n", name, name);
+	printf("%s: uzycie: %s [no] [path] [echo]\n", name, name);
+	printf("\tno   - liczba krokow, domyslnie: 10\n");
+	printf("\tpath - sciezka ze wstepna\n");
+	printf("\techo - jeżeli równe 0, pomijane jest drukowanie na konsole\n");
 }
 
 int main(int argc, char **argv) {
@@ -39,21 +42,21 @@ int main(int argc, char **argv) {
 	
 	int i;
 	int l = (argc > 1) ? atoi(argv[1]) : 10;
-	char * path = (argc > 2) ? argv[2] :  "matryca.txt";
+	char * path = (argc > 2) ? argv[2] : "matryca.txt";
+	int echo = (argc > 3 && argv[3][0] == '0') ? 0 : 1;
 	
-	matrix_t * m = wczytaj("matryca.txt");
+	matrix_t * m = wczytaj(path);
 	matrix_t * m2 = alokuj(m);
 	
 	for(i = 1; i <= l; i++) {	
 		czyscEkran();
 		printf("Stan #%i\n", i);
-		drukuj(m);
+		if(echo) drukuj(m);
 		if(i == l) zapisz(m, path, i);
 		rysujPNG(m, path, i);
 		gen(m, m2);
 		move(m, m2);
-		printf("\n");
-		w(1000);
+		if(echo) w(1000);
 	}
 	
 	
