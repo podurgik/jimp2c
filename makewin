@@ -1,0 +1,4 @@
+all:
+	cl main.c matrix.c gen.c
+test: all
+	main 8
