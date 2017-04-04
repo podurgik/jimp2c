@@ -33,18 +33,20 @@ int main(int argc, char **argv) {
 	char * path = (argc > 2) ? argv[2] :  "matryca.txt";
 	
 	matrix_t * m = wczytaj("matryca.txt");
-        matrix_t * m2 = malloc(sizeof(matrix_t));
-        m2->tab = (int*) malloc(sizeof(int)* m->n); 
+        matrix_t * m2 = alokuj(m);
 	
 	for(i = 1; i <= l; i++) {	
 		printf("\033[H\033[J");
 		printf("Stan #%i\n", i);
 		drukuj(m);
+		if(i == l) zapisz(m, path, i);
 		gen(m, m2);
 		move(m, m2);
 		printf("\n");
 		w(1000);
 	}
+	
+	
         /* printf("\n\nKolumn: %i\nWierszy:%i\nZnakow: %i\n", m->cols, m->rows, m->n); */
 
         return EXIT_SUCCESS;

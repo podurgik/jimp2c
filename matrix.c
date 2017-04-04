@@ -3,10 +3,10 @@
 #include "matrix.h"
 
 matrix_t * wczytaj (char *path){
-	FILE * plik = fopen("matryca.txt", "r");
+	FILE * plik = fopen(path, "r");
 
 	if (plik == NULL) {
-		printf("Brak pliku \"matryca.txt\"!");
+		printf("Brak pliku \"%s\"!\n", path);
 		exit(1);
 	}
 
@@ -34,10 +34,10 @@ matrix_t * wczytaj (char *path){
 		exit(1);
 	}
 
-	plik = fopen("matryca.txt", "r");
+	plik = fopen(path, "r");
 
 	if (plik == NULL) {
-		printf("Brak pliku 'matryca.txt'!");
+		printf("Brak pliku \"%s\"!\n", path);
 		exit(1);
 	}
 
@@ -81,4 +81,30 @@ void move(matrix_t * m, matrix_t * m2) {
 	for(i=0; i < m->n; i++) {
 			m->tab[i] = m2->tab[i];
 	}
+}
+
+matrix_t * alokuj(matrix_t * m) {
+	matrix_t * m2 = malloc(sizeof(matrix_t));
+        m2->tab = (int*) malloc(sizeof(int)* m->n);
+	m2->n = m->n;
+	m2->cols = m->cols;
+	m2->rows = m->rows;
+	return m2;
+}
+
+void zapisz(matrix_t * m, char * path, int nk) {
+	char str[50];
+	sprintf(str, "%s_stan_%i", path, nk);
+	FILE * plik = fopen(str, "w");
+	
+	int i = 0;
+	int kom;
+	while (i < m->n) {
+		fprintf(plik, "%i", m->tab[i++]);
+
+		if (i % m->cols == 0)
+			fprintf(plik, "\n");
+	}
+	
+	fclose(plik);
 }
