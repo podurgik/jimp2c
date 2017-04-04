@@ -27,16 +27,36 @@ gen.c
 		Przy pomocy funkcji nal() sprawdzane jest, czy konkretny sasiąd komórki znajduje się na planszy. Jeżeli tak, to sprawdza się jego stan.
 
 	int nal(matrix_t * m, int r, int c)
-		Funkcja sprawdza, czy dana komórka należy do planszy. Jeżeli tak - zwracane jest wartość 1, jeżeli nie, to 0.
+		Funkcja sprawdza, czy dana komórka należy do planszy. Jeżeli tak - zwracane jest wartość 1, jeżeli nie, to 0
 
+png.c
+Korzysta z lodepng.c
+	void rysujPNG(matrix_t * m, char * path, int nk);
+		Funkcja główna - zarządza zapisem, wywołując inne funkcje.
+		Tworzona jest tablica "pikseli", która jest wypełniana białym kolorem.
+
+	void setAlive(unsigned char* image, unsigned width, unsigned height, unsigned x, unsigned y);
+		Funkcja wskazuje komórkę - grupę pikseli, która ma być ożywiona - zmieniona na kolor czarny.
+
+	void setPixel(unsigned char* image, unsigned width, unsigned height, unsigned x, unsigned y, char r, char g, char b, char a);
+		Funkcja zmieniająca kolor konkretnego piksela na żądaną wartość RGBA.
+
+	void zapiszPNG(const char* filename, const unsigned char* image, unsigned width, unsigned height);
+		Funkcja zapisująca tablicę pikseli do pliku PNG.
+
+lodepng.c
+Moduł generujący obrazki png. Jest to zewnętrzna biblioteka udostępniona do
+dowolnego użytku na stronie http://lodev.org/lodepng/
 
 main.c
 	int main(int argc, char **argv)
 		Sprawdza poprawność argumentów i dla nich uruchamia grę. W przeciwnym razie brane są wartości domyślne, o ile nie zostanie wywołana pomoc (funkcja help()).
 		1. argument to liczba kroków gry
 		2. argument to ścieżka do pliku tekstowego z planszą
+		3. argument umożliwia pominięcie wypisywanie w konsoli planszy, co przyspiesza generację obrazów PNG
+
 		Dla zadanej liczby kroków wykonywane są instrukcje wewnątrz pętli for():
-			- wyczyszczenie ekranu przy pomocy ANSI/VT100 Terminal Control Escape Sequences (http://www.termsys.demon.co.uk/vtansi.htm)
+			- wyczyszczenie ekranu przy pomocy ANSI/VT100 Terminal Control Escape Sequences (http://www.termsys.demon.co.uk/vtansi.htm) lub funkcji system("pause")
 			- wypisanie numeru stanu
 			- wypisanie planszy przy pomocy funkcji drukuj()
 			- wywoływana jest funkcja gen() generująca następny krok
