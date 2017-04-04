@@ -13,7 +13,7 @@ lodepng.o: lodepng.c lodepng.h
 main.o: main.c
 
 test: all
-	./gra 8
+	./gra 9
 
 clean:
 	rm *.o
